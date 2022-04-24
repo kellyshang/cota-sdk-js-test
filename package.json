@@ -1,0 +1,24 @@
+{
+  "name": "cota-sdk-js-test",
+  "version": "1.0.0",
+  "description": "test for cota-sdk-js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha './test/**/*.test.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kellyshang/cota-sdk-js-test.git"
+  },
+  "author": "kellyshang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kellyshang/cota-sdk-js-test/issues"
+  },
+  "homepage": "https://github.com/kellyshang/cota-sdk-js-test#readme",
+  "dependencies": {
+    "@nervina-labs/cota-sdk": "^0.4.3",
+    "chai": "^4.3.6",
+    "mocha": "^9.2.2"
+  }
+}
