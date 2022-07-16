@@ -1,4 +1,4 @@
-const common = require('./common');
+const common = require('./url');
 
 module.exports = {
     ...common

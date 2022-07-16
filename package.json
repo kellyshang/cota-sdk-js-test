@@ -4,7 +4,19 @@
   "description": "test for cota-sdk-js",
   "main": "index.js",
   "scripts": {
-    "test": "mocha './test/**/*.test.js'"
+    "test": "mocha './test/**/*.test.js'",
+    "transfertest": "mocha ./test/service/transfer.test.js -t 200000 2>./log/transfer.log --reporter mochawesome --reporter-options reportDir=testreports/cota-tests,reportFilename=transferreport",
+    "minttest": "mocha ./test/service/mint.test.js -t 200000 2>./log/mint.log --reporter mochawesome --reporter-options reportDir=testreports/cota-tests,reportFilename=mintreport",
+    "definetest": "mocha ./test/service/define.test.js -t 200000 2>./log/define.log --reporter mochawesome --reporter-options reportDir=testreports/cota-tests,reportFilename=definereport",
+    "registrytest": "mocha ./test/service/registry.test.js -t 300000 2>./log/registry.log --reporter mochawesome --reporter-options reportDir=testreports/cota-tests,reportFilename=registryreport",
+    "claimtest": "mocha ./test/service/claim.test.js -t 200000 2>./log/claim.log --reporter mochawesome --reporter-options reportDir=testreports/cota-tests,reportFilename=claimreport",
+    "withdrawtest": "mocha ./test/service/withdraw.test.js -t 200000 2>./log/withdraw.log --reporter mochawesome --reporter-options reportDir=testreports/cota-tests,reportFilename=withdrawreport",
+    "claimupdatetest": "mocha ./test/service/claim-update.test.js -t 200000 2>./log/claimUpdate.log --reporter mochawesome --reporter-options reportDir=testreports/cota-tests,reportFilename=claimupdatereport",
+    "transferupdatetest": "mocha ./test/service/transfer-update.test.js -t 200000 2>./log/transferUpdate.log --reporter mochawesome --reporter-options reportDir=testreports/cota-tests,reportFilename=transferupdatereport",
+    "cota:systemtest": "yarn minttest && yarn transfertest && yarn registrytest && yarn definetest && yarn claimtest && yarn withdrawtest && yarn claimupdatetest && yarn transferupdatetest",
+    "cota:merge": "npx mochawesome-merge ./testreports/cota-tests/*.json > ./testreports/cotatest.json",
+    "cota:generate": "marge ./testreports/cotatest.json --reportFilename cotatest.html --reportDir ./testreports/",
+    "cota:test": "yarn cota:systemtest && yarn cota:merge && yarn cota:generate"
   },
   "repository": {
     "type": "git",
@@ -17,8 +29,11 @@
   },
   "homepage": "https://github.com/kellyshang/cota-sdk-js-test#readme",
   "dependencies": {
-    "@nervina-labs/cota-sdk": "^0.4.3",
+    "@nervina-labs/cota-sdk": "^0.6.1",
     "chai": "^4.3.6",
-    "mocha": "^9.2.2"
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^9.2.2",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.2.1"
   }
 }
