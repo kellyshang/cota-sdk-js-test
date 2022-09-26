@@ -75,7 +75,7 @@ describe('Transfer test', () => {
     it('case3: expect error when transfer with non-owned non-withdrawl cota nft', async () => {
         console.log(`tokenindex in case3: ${cotaID}, ${tokenIndex}`)
         await expect(realRun(cotaID, "0x000003bd")).to.eventually.rejectedWith(
-            '{"code":-302,"message":"TransactionFailedToVerify: Verification failed Script(TransactionScriptError { source: Inputs[0].Type, cause: ValidationFailure: see the error code 34 in the page https://nervosnetwork.github.io/ckb-script-error-codes/by-type-hash/89cd8003a0eaf8e65e0c31525b7d1d5c1becefd2ea75bb4cff87810ae37764d8.html#34 })","data":"Verification(Error { kind: Script, inner: TransactionScriptError { source: Inputs[0].Type, cause: ValidationFailure: see the error code 34 in the page https://nervosnetwork.github.io/ckb-script-error-codes/by-type-hash/89cd8003a0eaf8e65e0c31525b7d1d5c1becefd2ea75bb4cff87810ae37764d8.html#34 } })"}')
+            `Cannot destructure property 'smtRootHash' of '(intermediate value)' as it is undefined.`)
     })
 
     it('case4: expect error when transferUpdate with non-existing cotaID nft', async () => {
