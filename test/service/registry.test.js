@@ -5,7 +5,7 @@ const {
     serializeWitnessArgs,
     serializeScript,
 } = require('@nervosnetwork/ckb-sdk-utils')
-const { Collector, Aggregator, getAlwaysSuccessLock, generateRegisterCotaTx } = require("@nervina-labs/cota-sdk")
+const { Collector, Aggregator, getAlwaysSuccessLock, generateRegisterCotaTx, FEE } = require("@nervina-labs/cota-sdk")
 const { registryURL, cotaURL, ckbNodeUrl, ckbIndexerUrl } = require('../../utils');
 const { define, mint, transfer, waitTxStatus, generatePrivAddr, readLog, secp256k1CellDep } = require('../../utils/common')
 const chai = require('chai')
@@ -35,7 +35,7 @@ describe('Registry test', () => {
         const unregisteredCotaLock = addressToScript(TEST_ADDRESS)
         console.log(`provideCKBLock: ${JSON.stringify(provideCKBLock)}
     unregisteredCotaLock: ${JSON.stringify(unregisteredCotaLock)}`)
-        let rawTx = await generateRegisterCotaTx(service, [unregisteredCotaLock], provideCKBLock)
+        let rawTx = await generateRegisterCotaTx(service, [unregisteredCotaLock], provideCKBLock, FEE, isMainnet)
         const secp256k1Dep = await secp256k1CellDep(ckb)
         rawTx.cellDeps.push(secp256k1Dep)
 
@@ -96,7 +96,7 @@ describe('Registry test', () => {
         expect(txHash).not.null
         await expect(realRun(TEST_ADDRESS)).to.eventually.rejectedWith('PoolRejectedDuplicatedTransaction')
         await waitTxStatus(ckb, txHash)
-        console.log("=========1 case1 end=========")
+        console.log("=========1 case1 registry tx end=========")
 
         // define with the new registered account
         const defineCotaInfo = {
