@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/kellyshang/cota-sdk-js-test#readme",
   "dependencies": {
-    "@nervina-labs/cota-sdk": "^0.8.0",
+    "@nervina-labs/cota-sdk": "^0.9.0",
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "mocha": "^9.2.2",
